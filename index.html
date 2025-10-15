@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Predictor Deployment</title>
+</head>
+<body>
+
+    <h1>Simple House Price Prediction</h1>
+    <p>This is a deployed web app showcasing the model's functionality (Task 3 Deliverable).</p>
+
+    <form action="{{ url_for('predict') }}" method="post">
+        
+        <label for="SqFt">Square Footage (SqFt):</label><br>
+        <input type="number" id="SqFt" name="SqFt" required 
+               value="{{ features['SqFt'] if features else 1500 }}"><br><br>
+
+        <label for="Bedrooms">Number of Bedrooms:</label><br>
+        <input type="number" id="Bedrooms" name="Bedrooms" required 
+               value="{{ features['Bedrooms'] if features else 3 }}"><br><br>
+
+        <label for="Age">Age of House (Years):</label><br>
+        <input type="number" id="Age" name="Age" name="Age" required 
+               value="{{ features['Age'] if features else 10 }}"><br><br>
+
+        <input type="submit" value="Predict Price">
+    </form>
+
+    <hr>
+
+    {% if prediction_text %}
+        <h2>Prediction Result:</h2>
+        <p style="color: blue; font-size: 1.5em;">{{ prediction_text }}</p>
+    {% endif %}
+
+</body>
+</html>
